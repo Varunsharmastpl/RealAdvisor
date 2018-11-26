@@ -67,6 +67,7 @@ export default class MyDocument extends Document {
             dangerouslySetInnerHTML={{ __html: muiCss }}
           />
           <style dangerouslySetInnerHTML={{ __html: css }} />
+          <link rel="stylesheet" href="https://unpkg.com/react-table@latest/react-table.css" />
         </Head>
         <body>
           <Main />

@@ -7,15 +7,16 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { Link } from '../../controls/link';
-
 import {
   type FragmentRefs,
   createFragment,
   createMutation,
 } from '../../controls/relay';
 
+import Table from '../Table/Table';
 import type { Property_property } from './__generated__/Property_property.graphql';
 import type { PropertyUpsertMutation } from './__generated__/PropertyUpsertMutation.graphql';
+import Form from './Form';
 
 type PropertyData = {|
   lead?: Property_property,
@@ -50,15 +51,17 @@ export const Property = (props: Props) => {
   return (
     <>
       <PropertyFragment property={props.property}>
-        {(/* use { property } to get the query data*/) => (
+        {({ property }) => (
           <Flex justifyContent="center">
             <Paper
               css={{ maxWidth: 960, marginTop: 16, width: '100%', padding: 16 }}
             >
+            <Table property={property} />
               <PropertyUpsertLead>
-                {(/* use { mutate, mutating } to commit changes to the API */) => (
+                {({ mutate }) => (
                   <>
                     <Typography variant="h6">Start here</Typography>
+                    <Form mutate={mutate} />
                     <Link href={{ pathname: '/' }}>
                       <Button
                         to="/"
